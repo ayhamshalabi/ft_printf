@@ -16,11 +16,13 @@ static int	ft_format(char specifier, va_list args)
 {
 	if (specifier == 'c' || specifier == 's' || specifier == '%')
 		return (ft_printf_char(specifier, args));
-	else if (specifier == 'd' || specifier == 'i' || specifier == 'u')
+	if (specifier == 'd' || specifier == 'i' || specifier == 'u')
 		return (ft_printf_nbr(specifier, args));
-	else if (specifier == 'x' || specifier == 'X' || specifier == 'p')
+	if (specifier == 'x' || specifier == 'X' || specifier == 'p')
 		return (ft_printf_hex(specifier, args));
-	return (0);
+	write(1, "%", 1);
+	write(1, &specifier, 1);
+	return (2);
 }
 
 int	ft_printf(const char *format, ...)
