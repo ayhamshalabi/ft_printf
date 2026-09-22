@@ -6,7 +6,7 @@
 /*   By: ayhshala <ayham.shalabi@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/20 21:48:37 by ayhshala          #+#    #+#             */
-/*   Updated: 2026/09/20 21:48:37 by ayhshala         ###   ########.fr       */
+/*   Updated: 2026/09/22 14:59:24 by ayhshala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static int	ft_puthex(char specifier, unsigned long n)
 static int	ft_putptr(void *ptr)
 {
 	unsigned long	addr;
-	int	len;
-	
+	int				len;
+
 	if (!ptr)
 		return (write(1, "(nil)", 5));
 	len = write(1, "0x", 2);
