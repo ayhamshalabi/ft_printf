@@ -1,0 +1,12 @@
+# Object and library build artifacts
+*.o
+*.a
+
+# Test executables
+test_runner
+*.out
+*.exe
+
+# Operating system files
+.DS_Store
+Thumbs.db

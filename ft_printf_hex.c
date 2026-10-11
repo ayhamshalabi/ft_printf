@@ -1,17 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_printf_hex.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ayhshala <ayham.shalabi@learner.42.tech    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/20 21:48:37 by ayhshala          #+#    #+#             */
-/*   Updated: 2026/09/22 14:59:24 by ayhshala         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
+/*Recursively converts and writes an unsigned number in base 16 lowercase or uppercase.*/
 static int	ft_puthex(char specifier, unsigned long n)
 {
 	char	*base;
@@ -28,6 +17,7 @@ static int	ft_puthex(char specifier, unsigned long n)
 	return (len);
 }
 
+/*Outputs a void pointer memory address in lowercase hex prefixed with 0x.*/
 static int	ft_putptr(void *ptr)
 {
 	unsigned long	addr;
@@ -41,6 +31,7 @@ static int	ft_putptr(void *ptr)
 	return (len);
 }
 
+/*Handles hexadecimal and pointer address conversion specifiers.*/
 int	ft_printf_hex(char specifier, va_list args)
 {
 	if (specifier == 'x' || specifier == 'X')

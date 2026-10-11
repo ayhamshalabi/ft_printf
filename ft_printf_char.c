@@ -1,22 +1,12 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_printf_char.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ayhshala <ayham.shalabi@learner.42.tech    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/20 21:48:35 by ayhshala          #+#    #+#             */
-/*   Updated: 2026/09/22 14:59:27 by ayhshala         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
+/*Writes a single character to standard output and returns character count.*/
 static int	ft_putchar(char c)
 {
 	return (write(1, &c, 1));
 }
 
+/*Writes a string to standard output, outputting (null) if string pointer is NULL.*/
 static int	ft_putstr(char *s)
 {
 	int	i;
@@ -32,6 +22,7 @@ static int	ft_putstr(char *s)
 	return (i);
 }
 
+/*Handles character, string, and literal percent conversion specifiers.*/
 int	ft_printf_char(char specifier, va_list args)
 {
 	if (specifier == 'c')

@@ -10,7 +10,7 @@ SRCS	= ft_printf.c \
 		  ft_printf_nbr.c \
 		  ft_printf_hex.c
 
-OBJS = $(SRCS:.c=.o)
+OBJS	= $(SRCS:.c=.o)
 
 all: $(NAME)
 

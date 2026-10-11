@@ -1,16 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ayhshala <ayham.shalabi@learner.42.tech    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/22 14:59:58 by ayhshala          #+#    #+#             */
-/*   Updated: 2026/09/22 16:05:00 by ayhshala         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <limits.h>
 #include <stdlib.h>
 #include "ft_printf.h"
@@ -24,6 +12,7 @@
 static int	g_total = 0;
 static int	g_passed = 0;
 
+/*Helper evaluation callback comparing standard printf and ft_printf output counts.*/
 static void	eval(int r1, int r2)
 {
 	g_total++;
@@ -38,20 +27,20 @@ static void	eval(int r1, int r2)
 	}
 }
 
+/*Comprehensive unit test runner exercising all conversion specifiers and edge cases.*/
 int	main(void)
 {
 	int		r1;
 	int		r2;
-	int		dummy = 42;
+	int		dummy = 100;
 	void	*heap_ptr = malloc(16);
 
 	printf("%s==================================================%s\n", CYAN, RESET);
 	printf("%s          FT_PRINTF COMPREHENSIVE TESTER          %s\n", CYAN, RESET);
 	printf("%s==================================================%s\n\n", CYAN, RESET);
 
-	/* ------------------------------------------------------------------ */
-	/* 1. PLAIN TEXT & EMPTY STRINGS                                      */
-	/* ------------------------------------------------------------------ */
+	/*1. PLAIN TEXT & EMPTY STRINGS*/
+
 	printf("%s[1] PLAIN TEXT & EMPTY STRINGS%s\n", BLUE, RESET);
 	r1 = printf("[std]: Simple string without format\n");
 	r2 = ft_printf("[ft ]: Simple string without format\n");
@@ -65,9 +54,8 @@ int	main(void)
 	ft_printf("\n");
 	eval(r1, r2);
 
-	/* ------------------------------------------------------------------ */
-	/* 2. %c (CHAR) TESTS                                                 */
-	/* ------------------------------------------------------------------ */
+	/*2. %c (CHAR) TESTS*/
+
 	printf("%s[2] %%c (CHAR) TESTS%s\n", BLUE, RESET);
 	r1 = printf("[std]: Standard char: [%c]\n", 'a');
 	r2 = ft_printf("[ft ]: Standard char: [%c]\n", 'a');
@@ -85,12 +73,11 @@ int	main(void)
 	r2 = ft_printf("[ft ]: Null char in-between: pre[%c]post\n", '\0');
 	eval(r1, r2);
 
-	/* ------------------------------------------------------------------ */
-	/* 3. %s (STRING) TESTS                                               */
-	/* ------------------------------------------------------------------ */
+	/*3. %s (STRING) TESTS*/
+
 	printf("%s[3] %%s (STRING) TESTS%s\n", BLUE, RESET);
-	r1 = printf("[std]: Standard string: [%s]\n", "Hello 42!");
-	r2 = ft_printf("[ft ]: Standard string: [%s]\n", "Hello 42!");
+	r1 = printf("[std]: Standard string: [%s]\n", "Hello World!");
+	r2 = ft_printf("[ft ]: Standard string: [%s]\n", "Hello World!");
 	eval(r1, r2);
 
 	r1 = printf("[std]: Empty string: [%s]\n", "");
@@ -109,9 +96,8 @@ int	main(void)
 	r2 = ft_printf("[ft ]: String with special chars: [%s]\n", "tab:\t newline:\n quote:\"");
 	eval(r1, r2);
 
-	/* ------------------------------------------------------------------ */
-	/* 4. %d and %i (SIGNED INTEGER) TESTS                                */
-	/* ------------------------------------------------------------------ */
+	/*4. %d and %i (SIGNED INTEGER) TESTS*/
+
 	printf("%s[4] %%d / %%i (SIGNED INTEGER) TESTS%s\n", BLUE, RESET);
 	r1 = printf("[std]: Zero: [%d] [%i]\n", 0, 0);
 	r2 = ft_printf("[ft ]: Zero: [%d] [%i]\n", 0, 0);
@@ -125,12 +111,12 @@ int	main(void)
 	r2 = ft_printf("[ft ]: Negative single digit: [%d] [%i]\n", -7, -7);
 	eval(r1, r2);
 
-	r1 = printf("[std]: Positive standard: [%d] [%i]\n", 42, 1337);
-	r2 = ft_printf("[ft ]: Positive standard: [%d] [%i]\n", 42, 1337);
+	r1 = printf("[std]: Positive standard: [%d] [%i]\n", 250, 1000);
+	r2 = ft_printf("[ft ]: Positive standard: [%d] [%i]\n", 250, 1000);
 	eval(r1, r2);
 
-	r1 = printf("[std]: Negative standard: [%d] [%i]\n", -42, -1337);
-	r2 = ft_printf("[ft ]: Negative standard: [%d] [%i]\n", -42, -1337);
+	r1 = printf("[std]: Negative standard: [%d] [%i]\n", -250, -1000);
+	r2 = ft_printf("[ft ]: Negative standard: [%d] [%i]\n", -250, -1000);
 	eval(r1, r2);
 
 	r1 = printf("[std]: INT_MAX: [%d] [%i]\n", INT_MAX, INT_MAX);
@@ -149,16 +135,15 @@ int	main(void)
 	r2 = ft_printf("[ft ]: INT_MAX - 1: [%d]\n", INT_MAX - 1);
 	eval(r1, r2);
 
-	/* ------------------------------------------------------------------ */
-	/* 5. %u (UNSIGNED INTEGER) TESTS                                     */
-	/* ------------------------------------------------------------------ */
+	/*5. %u (UNSIGNED INTEGER) TESTS*/
+
 	printf("%s[5] %%u (UNSIGNED INTEGER) TESTS%s\n", BLUE, RESET);
 	r1 = printf("[std]: Zero: [%u]\n", 0);
 	r2 = ft_printf("[ft ]: Zero: [%u]\n", 0);
 	eval(r1, r2);
 
-	r1 = printf("[std]: Standard unsigned: [%u]\n", 4294);
-	r2 = ft_printf("[ft ]: Standard unsigned: [%u]\n", 4294);
+	r1 = printf("[std]: Standard unsigned: [%u]\n", 5000);
+	r2 = ft_printf("[ft ]: Standard unsigned: [%u]\n", 5000);
 	eval(r1, r2);
 
 	r1 = printf("[std]: UINT_MAX: [%u]\n", UINT_MAX);
@@ -169,17 +154,16 @@ int	main(void)
 	r2 = ft_printf("[ft ]: Negative cast (-1): [%u]\n", (unsigned int)-1);
 	eval(r1, r2);
 
-	r1 = printf("[std]: Negative cast (-42): [%u]\n", (unsigned int)-42);
-	r2 = ft_printf("[ft ]: Negative cast (-42): [%u]\n", (unsigned int)-42);
+	r1 = printf("[std]: Negative cast (-100): [%u]\n", (unsigned int)-100);
+	r2 = ft_printf("[ft ]: Negative cast (-100): [%u]\n", (unsigned int)-100);
 	eval(r1, r2);
 
 	r1 = printf("[std]: INT_MIN as unsigned: [%u]\n", (unsigned int)INT_MIN);
 	r2 = ft_printf("[ft ]: INT_MIN as unsigned: [%u]\n", (unsigned int)INT_MIN);
 	eval(r1, r2);
 
-	/* ------------------------------------------------------------------ */
-	/* 6. %x and %X (HEXADECIMAL) TESTS                                   */
-	/* ------------------------------------------------------------------ */
+	/*6. %x and %X (HEXADECIMAL) TESTS*/
+
 	printf("%s[6] %%x / %%X (HEXADECIMAL) TESTS%s\n", BLUE, RESET);
 	r1 = printf("[std]: Zero: [%x] [%X]\n", 0, 0);
 	r2 = ft_printf("[ft ]: Zero: [%x] [%X]\n", 0, 0);
@@ -209,9 +193,8 @@ int	main(void)
 	r2 = ft_printf("[ft ]: Complex pattern: [%x] [%X]\n", 0xabcdef, 0xABCDEF);
 	eval(r1, r2);
 
-	/* ------------------------------------------------------------------ */
-	/* 7. %p (POINTER) TESTS                                              */
-	/* ------------------------------------------------------------------ */
+	/*7. %p (POINTER) TESTS*/
+
 	printf("%s[7] %%p (POINTER) TESTS%s\n", BLUE, RESET);
 	r1 = printf("[std]: Stack pointer: [%p]\n", (void *)&dummy);
 	r2 = ft_printf("[ft ]: Stack pointer: [%p]\n", (void *)&dummy);
@@ -237,9 +220,8 @@ int	main(void)
 	r2 = ft_printf("[ft ]: Max pointer address (-1): [%p]\n", (void *)-1);
 	eval(r1, r2);
 
-	/* ------------------------------------------------------------------ */
-	/* 8. %% (PERCENT SIGN) TESTS                                         */
-	/* ------------------------------------------------------------------ */
+	/*8. %% (PERCENT SIGN) TESTS*/
+
 	printf("%s[8] %%%% (PERCENT SIGN) TESTS%s\n", BLUE, RESET);
 	r1 = printf("[std]: Single percent: [%%]\n");
 	r2 = ft_printf("[ft ]: Single percent: [%%]\n");
@@ -257,14 +239,13 @@ int	main(void)
 	r2 = ft_printf("[ft ]: Six consecutive: [%%%%%%]\n");
 	eval(r1, r2);
 
-	/* ------------------------------------------------------------------ */
-	/* 9. COMPLEX COMBINATIONS & STRESS TESTS                             */
-	/* ------------------------------------------------------------------ */
+	/*9. COMPLEX COMBINATIONS & STRESS TESTS*/
+
 	printf("%s[9] COMPLEX COMBINATIONS & STRESS TESTS%s\n", BLUE, RESET);
 	r1 = printf("[std]: All together: %c | %s | %p | %d | %i | %u | %x | %X | %%\n",
-			'A', "42", (void *)&dummy, -42, 42, 4294967295U, 255, 255);
+			'A', "Test", (void *)&dummy, -100, 100, UINT_MAX, 255, 255);
 	r2 = ft_printf("[ft ]: All together: %c | %s | %p | %d | %i | %u | %x | %X | %%\n",
-			'A', "42", (void *)&dummy, -42, 42, 4294967295U, 255, 255);
+			'A', "Test", (void *)&dummy, -100, 100, UINT_MAX, 255, 255);
 	eval(r1, r2);
 
 	r1 = printf("[std]: Extreme combo: %s %d %p %u %x %%\n",
@@ -273,9 +254,8 @@ int	main(void)
 			(char *)NULL, INT_MIN, (void *)0, 0, 0);
 	eval(r1, r2);
 
-	/* ------------------------------------------------------------------ */
-	/* SUMMARY SCOREBOARD                                                 */
-	/* ------------------------------------------------------------------ */
+	/*SUMMARY SCOREBOARD*/
+
 	printf("%s==================================================%s\n", CYAN, RESET);
 	printf("%s                  TEST RESULTS                   %s\n", CYAN, RESET);
 	printf("%s==================================================%s\n", CYAN, RESET);

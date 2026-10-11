@@ -1,17 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_printf_nbr.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ayhshala <ayham.shalabi@learner.42.tech    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/20 21:48:39 by ayhshala          #+#    #+#             */
-/*   Updated: 2026/09/22 14:59:31 by ayhshala         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
+/*Recursively writes a signed decimal integer to standard output.*/
 static int	ft_putnbr(int n)
 {
 	char	c;
@@ -32,6 +21,7 @@ static int	ft_putnbr(int n)
 	return (len);
 }
 
+/*Recursively writes an unsigned decimal integer to standard output.*/
 static int	ft_putunsigned(unsigned int n)
 {
 	char	c;
@@ -45,6 +35,7 @@ static int	ft_putunsigned(unsigned int n)
 	return (len);
 }
 
+/*Handles signed and unsigned decimal numeric conversion specifiers.*/
 int	ft_printf_nbr(char specifier, va_list args)
 {
 	if (specifier == 'd' || specifier == 'i')

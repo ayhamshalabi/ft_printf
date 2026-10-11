@@ -1,17 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ayhshala <ayham.shalabi@learner.42.tech    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/20 21:45:21 by ayhshala          #+#    #+#             */
-/*   Updated: 2026/09/22 14:59:35 by ayhshala         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
+/*Dispatches format specifier to the corresponding category conversion handler.*/
 static int	ft_format(char specifier, va_list args)
 {
 	if (specifier == 'c' || specifier == 's' || specifier == '%')
@@ -25,6 +14,7 @@ static int	ft_format(char specifier, va_list args)
 	return (2);
 }
 
+/*Custom printf implementation writing formatted output to stdout using variadic arguments.*/
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
